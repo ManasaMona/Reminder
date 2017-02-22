@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Sowjanya on 20-02-2017.
+ * Created by manasaa on 20-02-2017.
  */
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
@@ -65,7 +65,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public List<Reminder> getAllReminders(){
         List<Reminder> remindersList= new ArrayList<Reminder>();
         //Select Query
-
         String selectQuery="SELECT * FROM "+TABLE_NAME;
         SQLiteDatabase db =this.getWritableDatabase();
         Cursor cursorReminder = db.rawQuery(selectQuery+" ORDER BY " + COLUMN_ID + " DESC",null);

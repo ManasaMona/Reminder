@@ -20,7 +20,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     private static final String TAG="RecycleAdapterclass";
     private ArrayList<Reminder> mDataset;
     private Context mContext;
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {//Instantiates all views of the item
         public CardView mCardView;
         public TextView mTitleTextView;
         public TextView mTimeTextView;
@@ -38,7 +38,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         List<Reminder> reminderList=database.getAllReminders();
         this.mDataset= (ArrayList<Reminder>) reminderList;
     }
-    @Override
+    @Override//inflates layout for each item
     public RecycleAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.reminder_item, parent, false);
@@ -46,7 +46,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
-    @Override
+    @Override//Sets the data to the fields
     public void onBindViewHolder(RecycleAdapter.MyViewHolder holder, int position) {
         holder.mTitleTextView.setText(mDataset.get(position).getNameTask());
         holder.mTimeTextView.setText(mDataset.get(position).getTimeTask());

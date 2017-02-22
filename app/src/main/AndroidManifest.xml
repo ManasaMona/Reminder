@@ -10,7 +10,8 @@
         android:theme="@style/AppTheme">
         <provider
             android:name=".RemindersProvider"
-            android:authorities="androidcontentproviderdemo.androidcontentprovider.reminders">
+            android:authorities="androidcontentproviderdemo.androidcontentprovider.reminders"
+            android:exported="true">
         </provider>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -18,9 +19,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".InputDailog">
-
         </activity>
     </application>
 

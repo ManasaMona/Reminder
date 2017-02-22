@@ -16,24 +16,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class ManasaFragment extends Fragment {
     private static final String TAG="MANASAFRAGMENTclass";
     private RecycleAdapter adapter;
+    private RecyclerView recyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG,"called onCreateView");
         final View v=inflater.inflate(R.layout.fragment_manasa, container, false);
+
         //Recycler View
-        RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_recycler_view);
-        rv.setHasFixedSize(true);
-        //setting layout for recyclerView
-        adapter=new RecycleAdapter(getContext());
-        rv.setAdapter(adapter);
+        recyclerView = (RecyclerView) v.findViewById(R.id.rv_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        adapter=new RecycleAdapter(getContext());//setting layout for recyclerView
+        recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
         //delete on swipe
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -50,9 +51,10 @@ public class ManasaFragment extends Fragment {
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-        itemTouchHelper.attachToRecyclerView(rv);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(llm);
+        recyclerView.setLayoutManager(llm);
+
         //FAB Button
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fabAlert);
             fab.setOnClickListener(new View.OnClickListener(){

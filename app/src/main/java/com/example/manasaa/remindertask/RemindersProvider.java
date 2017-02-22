@@ -55,16 +55,16 @@ public class RemindersProvider  extends ContentProvider{
     @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        return null;
+        throw new UnsupportedOperationException("Cannot make changes on the data");
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        throw new UnsupportedOperationException("Cannot make changes on the data");
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        throw new UnsupportedOperationException("Cannot make changes on the data");
     }
 }
