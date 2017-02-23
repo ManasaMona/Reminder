@@ -20,7 +20,7 @@ import java.util.List;
 
 
 public class ManasaFragment extends Fragment {
-    private static final String TAG="MANASAFRAGMENTclass";
+    private static final String TAG=ManasaFragment.class.getSimpleName();
     private RecycleAdapter mAdapter;
     private RecyclerView mRecyclerView;
     @Override

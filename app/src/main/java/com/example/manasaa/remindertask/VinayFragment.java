@@ -52,19 +52,22 @@ public class VinayFragment extends Fragment implements LoaderManager.LoaderCallb
 
     //gets the data from the SQLite database.
     @Override
-    public Loader onCreateLoader(int id, Bundle args) {  Log.d(TAG,"called onCreateLoader");
+    public Loader onCreateLoader(int id, Bundle args) {
+        Log.d(TAG,"called onCreateLoader");
         cursorLoader= new CursorLoader(getActivity(), CONTENT_URI, null, null, null, null);
         return  cursorLoader;
     }
 
     @Override//gets the data
-    public void onLoadFinished(Loader loader, Object data) { Log.d(TAG,"called onLoadFinished");
+    public void onLoadFinished(Loader loader, Object data) {
+        Log.d(TAG,"called onLoadFinished");
         mAdapter.swapCursor((Cursor) data);
 
     }
 
     @Override//if loader is changed
-    public void onLoaderReset(Loader loader) { Log.d(TAG,"called onLoadFinished");
+    public void onLoaderReset(Loader loader) {
+        Log.d(TAG,"called onLoadFinished");
         mAdapter.swapCursor(null);
 
     }
