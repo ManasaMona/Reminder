@@ -21,19 +21,19 @@ import java.util.List;
 
 public class ManasaFragment extends Fragment {
     private static final String TAG="MANASAFRAGMENTclass";
-    private RecycleAdapter adapter;
-    private RecyclerView recyclerView;
+    private RecycleAdapter mAdapter;
+    private RecyclerView mRecyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG,"called onCreateView");
         final View v=inflater.inflate(R.layout.fragment_manasa, container, false);
 
         //Recycler View
-        recyclerView = (RecyclerView) v.findViewById(R.id.rv_recycler_view);
-        recyclerView.setHasFixedSize(true);
-        adapter=new RecycleAdapter(getContext());//setting layout for recyclerView
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.rv_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mAdapter=new RecycleAdapter(getContext());//setting layout for recyclerView
+        mRecyclerView.setAdapter( mAdapter);
+        mAdapter.notifyDataSetChanged();
 
         //delete on swipe
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -46,14 +46,14 @@ public class ManasaFragment extends Fragment {
                 Log.d(TAG, "called simpleItemTouchCallback onSwiped");
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.RIGHT){
-                    adapter.removeItem(position);
+                    mAdapter.removeItem(position);
                 }
             }
         };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(llm);
+        mRecyclerView.setLayoutManager(llm);
 
         //FAB Button
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fabAlert);
@@ -66,6 +66,7 @@ public class ManasaFragment extends Fragment {
                     dialog.setContentView(R.layout.input_dailog);
                     final EditText title_reminder_edittxt = (EditText) dialog.findViewById(R.id.taskName);
                     final EditText time_reminder_edittxt = (EditText) dialog.findViewById(R.id.taskTime);
+                    time_reminder_edittxt.setHint("HH:MM");
                     Button saveButton =(Button) dialog.findViewById(R.id.saveButton);
                     saveButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -88,10 +89,10 @@ public class ManasaFragment extends Fragment {
                     window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 }
                 private void resetAdpter() {
-                    adapter=new RecycleAdapter(getContext());
+                    mAdapter=new RecycleAdapter(getContext());
                     RecyclerView rv = (RecyclerView) v.findViewById(R.id.rv_recycler_view);
                     rv.setHasFixedSize(true);
-                    rv.setAdapter(adapter);
+                    rv.setAdapter( mAdapter);
                     LinearLayoutManager llm = new LinearLayoutManager(getActivity());
                     rv.setLayoutManager(llm);
                 }

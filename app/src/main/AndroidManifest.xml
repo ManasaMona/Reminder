@@ -10,13 +10,12 @@
         android:theme="@style/AppTheme">
         <provider
             android:name=".RemindersProvider"
-            android:authorities="androidcontentproviderdemo.androidcontentprovider.reminders"
+            android:authorities="androidcontentprovider.reminders"
             android:exported="true">
         </provider>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

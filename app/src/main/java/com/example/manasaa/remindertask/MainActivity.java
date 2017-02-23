@@ -11,27 +11,30 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity  {
     private static final String TAG="MAINACTIVITYclass";
+    private Toolbar mToolbar;
+    private TabLayout mTabLayout;
+    private PagerAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG,"called onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
         //Giving Tab names
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab1_title));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab2_title));
-        tabLayout.addTab(tabLayout.newTab().setText(R.string.tab3_title));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab1_title));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab2_title));
+        mTabLayout.addTab(mTabLayout.newTab().setText(R.string.tab3_title));
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         //From PagerAdapter Class assinging Fragments to tabs
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+         mAdapter = new PagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
+        viewPager.setAdapter(mAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());

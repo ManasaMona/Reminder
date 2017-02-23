@@ -15,7 +15,7 @@ import android.util.Log;
 
 public class RemindersProvider  extends ContentProvider{
     private static final String TAG="RemindersProviderclass";
-    private static final String PROVIDER_NAME = "androidcontentproviderdemo.androidcontentprovider.reminders";
+    private static final String PROVIDER_NAME = "androidcontentprovider.reminders";
     private static final Uri CONTENT_URI = Uri.parse("content://" + PROVIDER_NAME + "/reminders");
     private static final int REMINDERS = 1;
     private MySQLiteHelper database=null;
@@ -33,7 +33,7 @@ public class RemindersProvider  extends ContentProvider{
         Log.d(TAG,"getType(Uri uri)");
         switch (uriMatcher.match(uri)) {
             case REMINDERS://list of items
-                return "vnd.android.cursor.dir/vnd.com.androidcontentproviderdemo.androidcontentprovider.reminders";
+                return "vnd.android.cursor.dir/vnd.com.androidcontentprovider.reminders";
         }
         return null;
     }
